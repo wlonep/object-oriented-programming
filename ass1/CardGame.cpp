@@ -18,10 +18,10 @@ void defineSize(int &amount, int &rows, int &cols);
 Card **createBoard(int rows, int cols);
 void shuffleBoard(Card **board, int rows, int cols);
 void playGame(Card **board, int rows, int cols);
-void finishGame(Card **board, int rows, int cols);
+void finishGame(Card **board, int rows);
 
 int main() {
-    //_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     srand(static_cast<unsigned>(time(nullptr)));
     cout << "202211305 박지원" << endl;
 
@@ -31,7 +31,7 @@ int main() {
     shuffleBoard(board, rows, cols);
 
     playGame(board, rows, cols);
-    finishGame(board, rows, cols);
+    finishGame(board, rows);
     return 0;
 }
 
@@ -40,7 +40,6 @@ void defineSize(int &amount, int &rows, int &cols) {
      * 요구사항 1-1: 게임 보드 크기 결정
      */
     while (true) {
-        system("cls");
         cout << "카드 개수를 입력하세요: ";
         cin >> amount;
 
@@ -97,6 +96,9 @@ void shuffleBoard(Card **board, const int rows, const int cols) {
 }
 
 void printBoard(Card **board, const int rows, const int cols) {
+    /*
+     * 요구사항 2-5: 진행 상황 출력
+     */
     cout << "\t";
     for (int i = 0; i < cols; i++)
         cout << i + 1 << "\t";
@@ -112,6 +114,9 @@ void printBoard(Card **board, const int rows, const int cols) {
 }
 
 Card& inputCard(Card **board, const int rows, const int cols) {
+    /*
+     * 요구사항 2-1: 사용자 카드 입력
+     */
     char x;
     int y;
     while (true) {
@@ -142,6 +147,9 @@ Card& inputCard(Card **board, const int rows, const int cols) {
 }
 
 void playGame(Card **board, const int rows, const int cols) {
+    /*
+     * 요구사항 2-2 ~ 2-4: 게임 진행 로직
+     */
     const int pairs = rows * cols / 2;
     int matched = 0;
 
@@ -162,13 +170,16 @@ void playGame(Card **board, const int rows, const int cols) {
             cout << "두 카드가 일치하지 않습니다." << endl;
             first.setFlipped(false);
             second.setFlipped(false);
-            this_thread::sleep_for(chrono::seconds(2));
         }
+        this_thread::sleep_for(chrono::seconds(2));
     }
     cout << "모든 카드를 맞혔습니다. 게임 종료" << endl;
 }
 
-void finishGame(Card **board, const int rows, const int cols) {
+void finishGame(Card **board, const int rows) {
+    /*
+     * 요구사항 5: 할당된 메모리 해제
+     */
     for (int i = 0; i < rows; i++) {
         delete[] board[i];
     }
