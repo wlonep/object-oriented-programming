@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <memory>
+
 using namespace std;
 
 #ifdef _DEBUG
@@ -93,12 +95,12 @@ void example04() {
 void example05() {
     constexpr int SIZE = 10;
     int num[SIZE];
-    srand((unsigned)time(NULL));
+    srand((unsigned) time(NULL));
     cout << "==============" << endl;
     cout << "인덱스 값" << endl;
     cout << "==============" << endl;
     int i = 0;
-    for (auto& a : num) {
+    for (auto &a: num) {
         a = rand() % 100;
         cout << i++ << "\t" << a << endl;
     }
@@ -142,27 +144,31 @@ void example06() {
 
         if (seats[row][col]) {
             cout << "이미 예약된 좌석입니다." << endl;
-        }
-        else {
+        } else {
             seats[row][col] = true;
             cout << "예약이 완료되었습니다." << endl;
         }
     }
 }
 
-int* makeArray(const int SIZE) {
-    int* temp = new int[SIZE];
+int *makeArray(const int SIZE) {
+    int *temp = new int[SIZE];
     for (int i = 0; i < SIZE; i++) {
         temp[i] = rand() % 10;
     }
     return temp;
 }
 
-void printArray(int* (&arr), const int SIZE) {
+void printArray(int *(&arr), const int SIZE) {
     for (int i = 0; i < SIZE; i++) {
         cout << arr[i] << "\t";
     }
     cout << endl;
+}
+
+void func_delete(int *ptr) {
+    cout << "포인터 삭제" << endl;
+    delete ptr;
 }
 
 int main() {
@@ -185,7 +191,12 @@ int main() {
     //example04();
     //example06();
     //_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    int* arr = makeArray(10);
-    printArray(arr, 10);
+
+    shared_ptr<int[]> pnum1 = make_shared<int[]>(10);
+    weak_ptr<int> pnum1_w(pnum1);
+    auto pnum1_s = pnum1_w.lock();
+    if (pnum1_s) cout << *pnum1_s << endl;
+    else cout << "리소스 없음" << endl;
+
     return 0;
 }
