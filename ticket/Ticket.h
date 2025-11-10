@@ -5,7 +5,7 @@ protected:
     double price;
 public:
     Ticket(double price);
-    ~Ticket();
+    virtual ~Ticket();
     int getNumber() const;
     double getPrice() const;
     void setPrice(const double& price);
