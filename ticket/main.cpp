@@ -6,6 +6,7 @@ using namespace std;
 #include "AdvancedTicket.h"
 
 int main() {
+    cout << "202211305 박지원" << endl;
     Ticket ticket(1000.0);
     ticket.show();
     std::cout << "-----------------" << endl;

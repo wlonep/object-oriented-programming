@@ -21,6 +21,6 @@ double GeneralTicket::getPrice() const {
 void GeneralTicket::show() const {
     cout << "티켓 번호: " << number << endl;
     cout << "가격 정보: " << price << endl;
-    cout << "카드 결제 여부: " << payByCredit << endl;
+    cout << "카드 결제 여부: " << boolalpha << getPayByCredit() << endl;
     cout << "지불 금액: " << getPrice() << endl;
 }
