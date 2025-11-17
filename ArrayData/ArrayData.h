@@ -1,24 +1,26 @@
 #pragma once
 #include <memory>
 using namespace std;
+
+template<typename T>
 class ArrayData
 {
-protected:			
+protected:
 	//double* data=nullptr;
-	unique_ptr<double[]> data;
+	unique_ptr<T[]> data;
 	//shared_ptr<double[]> data;
 	int capacity;
-	int used;	
+	int used;
 public:
-	ArrayData();	
+	ArrayData();
 	ArrayData(const int& capacity, const int& used=0);
 	ArrayData(ArrayData& arr);
 	ArrayData(ArrayData&& arr) noexcept;
 	~ArrayData();
-	void addElement(const double& num);
+	void addElement(const T& num);
 	bool full() const;
 	void emptyArray();
-	void showData() const;	
+	void showData() const;
 	int getCapacity() const {
 		return this->capacity;
 	};
@@ -32,10 +34,12 @@ public:
 	ArrayData& operator=(const ArrayData& rhs);
 	ArrayData& operator=(ArrayData&& rhs) noexcept;
 
-	double& operator[](size_t num);
-	const double& operator[](size_t num) const;
-	friend ostream& operator<<(ostream& out, const ArrayData& arr);
+	T& operator[](size_t num);
+	const T& operator[](size_t num) const;
 
+	template<typename T1>
+	friend ostream& operator<<(ostream& out, const ArrayData<T1>& arr);
 };
 
 //ostream& operator<<(ostream& out, const ArrayData& arr);
+#include "ArrayDataDef.h"

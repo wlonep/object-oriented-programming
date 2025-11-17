@@ -1,3 +1,4 @@
+/*
 #include "ArrayData.h"
 #include <iostream>
 using namespace std;
@@ -31,7 +32,7 @@ ArrayData::~ArrayData()
 {
 	/*if (data != nullptr)
 		delete[] data;
-	data = nullptr;*/
+	data = nullptr;#1#
 }
 
 void ArrayData::addElement(const double& num) 
@@ -108,4 +109,5 @@ ostream& operator<<(ostream& out, const ArrayData& arr) {
 	out << endl;
 	return out;
 }
+*/
 

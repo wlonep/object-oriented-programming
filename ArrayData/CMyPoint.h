@@ -11,6 +11,5 @@ public:
     CMyPoint(const int &x, const int &y);
     friend ostream& operator<<(ostream &out, const CMyPoint &pt);
 
-    template<size_t N>
-    friend void sortAsc(CMyPoint(&arr)[N]);
+    bool operator>(const CMyPoint& other) const;
 };
