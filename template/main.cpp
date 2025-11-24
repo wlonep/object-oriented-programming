@@ -11,6 +11,7 @@ int search(const T1 (&arr)[N], const T2& query) {
 }
 
 int main() {
+    cout << "202211305 박지원" << endl;
     int arr[5] = {1, 2, 3, 4, 5};
     int idx1 = search(arr, 3);
     if (idx1 != -1) cout << arr[idx1] << endl;
