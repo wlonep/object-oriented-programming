@@ -23,3 +23,7 @@ CMyPoint::CMyPoint(const CMyPoint &&pt) noexcept: x(pt.x), y(pt.y) {
 bool CMyPoint::operator>(const CMyPoint& other) const {
     return this->x > other.x;
 }
+
+bool CMyPoint::operator==(const CMyPoint& pt) const {
+    return x==pt.x && y==pt.y;
+}

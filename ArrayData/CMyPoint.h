@@ -14,4 +14,5 @@ public:
     friend ostream& operator<<(ostream &out, const CMyPoint &pt);
 
     bool operator>(const CMyPoint& other) const;
+    bool operator==(const CMyPoint& pt) const;
 };
